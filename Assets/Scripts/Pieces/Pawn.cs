@@ -11,9 +11,11 @@ public class Pawn : ChessPiece
         int direction = (team == 0) ? 1: -1;
 
         //one front
+        //if(board[currentX, currentY + direction].team != team])
         if(board[currentX, currentY + direction] == null)
             moves.Add(new Vector2Int(currentX, currentY + direction));
-        //two fromt
+ 
+        //two front
         if(board[currentX, currentY + direction] == null)
         {
             if(team == 0 && currentY == 1 && board[currentX, currentY + (direction * 2)] == null)
@@ -21,7 +23,7 @@ public class Pawn : ChessPiece
             if(team == 1 && currentY == 6 && board[currentX, currentY + (direction * 2)] == null)
                 moves.Add(new Vector2Int(currentX, currentY + (direction * 2)));
         }
-            moves.Add(new Vector2Int(currentX, currentY + direction));
+    
         //diagonal takes
         if(currentX != tileCount - 1)
             if(board[currentX + 1, currentY + direction] != null && board[currentX + 1, currentY + direction].team != team)
@@ -30,7 +32,7 @@ public class Pawn : ChessPiece
             if(board[currentX - 1, currentY + direction] != null && board[currentX - 1, currentY + direction].team != team)
                 moves.Add(new Vector2Int(currentX - 1, currentY + direction));
 
-        //en passant
+        //en passant needs to be implemented
         
         return moves;
     }
